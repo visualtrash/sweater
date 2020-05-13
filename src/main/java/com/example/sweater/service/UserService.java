@@ -33,7 +33,7 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
-        user.setActive(true);
+        user.setActive(false);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
 
@@ -41,8 +41,8 @@ public class UserService implements UserDetailsService {
 
         if (!StringUtils.isEmpty(user.getEmail())){
             String message = String.format(
-                    "Hello, $s! \n" +
-                            "Welcome to Sweater.  link: http://localhost:8080/activate/%s",
+                    "<p>Hello, %s.<br><br>\n" +
+                            "<a href=\"http://localhost:8080/activate/%s\">activate account</a>",
                     user.getUsername(),
                     user.getActivationCode()
             );
@@ -61,6 +61,7 @@ public class UserService implements UserDetailsService {
 
        user.setActivationCode(null);
 
+       user.setActive(true);
        userRepo.save(user);
 
        return true;
