@@ -7,7 +7,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
-//зачем длячиво
+//заполнение значений ключей, нужных для отправки сообщений на почту
+//конфигурация класса MailSender
 @Configuration
 public class MailConfig {
     @Value("${spring.mail.host}")
